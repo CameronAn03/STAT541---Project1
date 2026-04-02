@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Cameron An">
+
+<title>Project 1 Checkpoint 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="project1checkpoint1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="project1checkpoint1_files/libs/quarto-html/quarto.js"></script>
+<script src="project1checkpoint1_files/libs/quarto-html/popper.min.js"></script>
+<script src="project1checkpoint1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="project1checkpoint1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="project1checkpoint1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="project1checkpoint1_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="project1checkpoint1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="project1checkpoint1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="project1checkpoint1_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project 1 Checkpoint 1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Cameron An </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<ol type="1">
+<li><strong>Describe the context of the data.</strong></li>
+</ol>
+<p><a href="https://www.who.int/news-room/fact-sheets/detail/measles">According to the WHO</a>, measles is a highly contagious disease spread by a virus which primarily affects young children. <a href="https://www.who.int/news-room/fact-sheets/detail/rubella">Rubella</a> is a “less severe” variant of measles but will cause birth defects if contracted during pregnancy. Although vaccines are available, Measles-related deaths continue to occur, affecting mainly unvaccinated children. This data explores Measles and Rubella cases around the world and was downloaded from the <a href="https://immunizationdata.who.int/global?topic=Provisional-measles-and-rubella-data&amp;location=">WHO Provisional monthly measles and rubella data</a> on 2025-06-12. It contains geographical information such as region, country, iso3 (three letter country code) as well as time data such as year and month. There are multiple variables that describe Measles and Rubella cases, with each pertaining to a specific level of certainty of disease contraction or the type of symptoms a suspected individual is showing. Some of these variables are given below:</p>
+<ul>
+<li>Measles_suspect: cases where the patient has a fever and maculopapular rash, or in whom a healthcare worker suspects measles
+<ul>
+<li>Measles_clinical: suspected case has at least one of cough, coryza, or conjunctivitis
+<ul>
+<li>No adequate clinical specimen was taken so it can’t be linked epidemiologically</li>
+</ul></li>
+<li>Measles_epi_linked: suspected case not confirmed by laboratory, but through time (rash onset occurring 7-23 days apart) and place (same area as confirmed case)</li>
+<li>Measles_lab_confirmed: suspected case confirmed positive by testing in a lab and vaccine-associated illness is ruled out</li>
+</ul></li>
+<li>Measles_total: sum of clinically compatible, epidemiologically linked and laboratory confirmed cases</li>
+</ul>
+<p>Lastly, there are some data regarding the population of countries and the rate of disease occurrence.</p>
+<ol start="2" type="1">
+<li><strong>Explain what cleaning ha to be done to the data.</strong></li>
+</ol>
+<p>We have to figure out how to handle the NA cases. Many of the entries have NA values for rubella cases across clinical, epi-linked and lab confirmed cases which impacts the total rubella cases. This may be due to which resources countries are limited to since rubella cases and measles cases are two individual tests. Additionally, some countries such as Chad, don’t have data for some months throughout the year.</p>
+<ol start="3" type="1">
+<li><strong>Pose at least two research questions that could be addressed with these data.</strong></li>
+</ol>
+<ul>
+<li>What country in Africa has the most measles cases (proportion), and how does this change over time?
+<ul>
+<li>Is this geographically correlated (i.e.&nbsp;if a country has an extreme number of measles cases, do surrounding countries have a similar number of cases?</li>
+</ul></li>
+<li>Does population density affect disease prevalence?</li>
+<li>Are measles cases seasonal?</li>
+</ul>
+<ol start="4" type="1">
+<li><strong>Pose at least two research questions that could be addressed using supplemental data.</strong></li>
+</ol>
+<ul>
+<li>Does measles affect countries with different socioeconomic factors differently?
+<ul>
+<li>How does measles impact richer countries compared to poorer countries?</li>
+</ul></li>
+<li>What are the education levels within each country? How does that impact the number of measles and rubella cases?</li>
+<li>How does a country’s age structure affect its disease prevalence</li>
+</ul>
+<ol start="5" type="1">
+<li><strong>Sketch out two visualizations that could be made to address the research questions you posed above.</strong></li>
+</ol>
+<p><img src="PlotSketches.png" class="img-fluid"></p>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
