@@ -2,6 +2,7 @@
 title: "Project 1 Checkpoint 1"
 author: "Cameron An"
 format: html
+embed-resources: true
 editor: visual
 ---
 
@@ -39,3 +40,4 @@ We have to figure out how to handle the NA cases. Many of the entries have NA va
 5.  **Sketch out two visualizations that could be made to address the research questions you posed above.**
 
 ![](PlotSketches.png)
+
