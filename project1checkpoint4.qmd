@@ -1,0 +1,73 @@
+---
+title: "project-1-checkpoint4"
+author: "Cameron An"
+format: html
+embed-resources: true
+editor: visual
+code-tools: true
+---
+
+## Libraries
+
+```{r}
+#| message: false
+
+library(rvest)
+library(tidyverse)
+library(rnaturalearth)
+library(sf)
+library(gt)
+library(httr)
+library(tidyjson)
+library(jsonlite)
+library(glue)
+library(ggridges)
+library(viridis)
+```
+
+
+```{r}
+measles_final <- read.csv(here::here("data", "measles_final.csv"))
+```
+
+## Heat Map
+
+```{r}
+#| label: heatmap-region-year
+#| fig-width: 10
+#| fig-height: 6
+
+measles_heatmap <- measles_final %>%
+  group_by(Region, Year) %>%
+  summarise(mean_cases = mean(Total.Measles.per.Million, na.rm = TRUE),
+            .groups = "drop") %>%
+  ggplot(aes(x = Year,
+             y = Region,
+             # compute log(1+x) since we 0s
+             fill = log1p(mean_cases))) + 
+  geom_tile(color = "white") +
+  # non-default colors
+  scale_fill_viridis_c(option = "C") +
+  # non-default theme
+  theme_classic() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.title = element_text(size = 12)
+  ) +
+  # Labels
+  labs(
+    title = "Average Measles Cases per Million by Region and Year",
+    x = "Year",
+    y = "",
+    fill = "ln(Measles Cases per Million + 1)",
+    # alt text
+    alt = paste("The AMRO region does not have data for 2012 and 2013. The heatmap indicates that there was a measles outbreak from 2014-2016 in the WPRO region. AFRO seems to have relatively consistent measles cases over time, with a spike in 2019.")
+  ) +
+  scale_x_continuous(breaks = seq(min(measles_final$Year),
+                                max(measles_final$Year),
+                                by = 2))
+
+measles_heatmap
+get_alt_text(measles_heatmap)
+```
+
